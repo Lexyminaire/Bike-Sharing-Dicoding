@@ -66,26 +66,17 @@ rata_jam = hourc_df.groupby("hr")["cnt"].mean()
 
 st.title('Bike Sharing Dashboard')
 
+#Plot Tren Penyewaan Sepeda Bulanan
 st.subheader('Tren Penyewaan Sepeda Bulanan (2011 vs 2012)')
-
 fig,ax = plt.subplots(figsize=(12,6))
 for year in rental_bulan.columns:
     ax.plot(rental_bulan.index, rental_bulan[year], marker='o', label=f"Tahun {year}")
-
 ax.set_xticks(range(1, 13))
 ax.set_xlabel("Bulan")
 ax.set_ylabel("Total Penyewaan Sepeda")
 ax.set_title("Tren Penyewaan Sepeda Bulanan (2011 vs 2012)")
 ax.legend(title="Tahun")
 ax.grid(True)
-st.pyplot(fig)
-
-st.subheader('Rata-Rata Penyewaan Sepeda Berdasarkan Musim')
-fig, ax = plt.subplots(figsize=(8, 6))
-ax.bar(rental_musim.index, rental_musim.values, color=['green', 'yellow', 'orange', 'blue'])
-ax.set_xlabel("Musim")
-ax.set_ylabel("Rata-rata Penyewaan Sepeda")
-ax.set_title("Rata-Rata Penyewaan Sepeda Berdasarkan Musim")
 st.pyplot(fig)
 
 # Plot Rata-rata Penyewaan Sepeda Berdasarkan Musim
@@ -117,7 +108,7 @@ ax.set_title("Rata-Rata Penyewaan Sepeda per Jam dalam Sehari")
 ax.grid(True)
 st.pyplot(fig)
 
-st.subheader('Best Customer Based on RFM Parameters')
+st.subheader('Pelanggan Terbaik Berdasarkan RFM Analysis')
  
 col1, col2, col3 = st.columns(3)
  
