@@ -53,14 +53,17 @@ hourc_main_df = hourc_df[(hourc_df["dteday"] >= str(start_date)) &
 
 rfm_df = create_rfm_df(hourc_main_df)
 
-# Mengekstrak tahun dan bulan
 dayc_df['year'] = dayc_df['dteday'].dt.year
 dayc_df['month'] = dayc_df['dteday'].dt.month
 
-# Menghitung total penyewaan sepeda per bulan dan tahun
 rental_bulan = dayc_df.groupby(['year', 'month'])['cnt'].sum().unstack(0)
 
-# Set title
+rental_musim = dayc_df.groupby("season")["cnt"].mean().sort_values()
+
+sepeda_cuaca = hourc_df.groupby("weathersit")["cnt"].mean().sort_values()
+
+rata_jam = hourc_df.groupby("hr")["cnt"].mean()
+
 st.title('Bike Sharing Dashboard')
 
 st.subheader('Tren Penyewaan Sepeda Bulanan (2011 vs 2012)')
@@ -75,10 +78,44 @@ ax.set_ylabel("Total Penyewaan Sepeda")
 ax.set_title("Tren Penyewaan Sepeda Bulanan (2011 vs 2012)")
 ax.legend(title="Tahun")
 ax.grid(True)
-
 st.pyplot(fig)
 
-st.subheader('')
+st.subheader('Rata-Rata Penyewaan Sepeda Berdasarkan Musim')
+fig, ax = plt.subplots(figsize=(8, 6))
+ax.bar(rental_musim.index, rental_musim.values, color=['green', 'yellow', 'orange', 'blue'])
+ax.set_xlabel("Musim")
+ax.set_ylabel("Rata-rata Penyewaan Sepeda")
+ax.set_title("Rata-Rata Penyewaan Sepeda Berdasarkan Musim")
+st.pyplot(fig)
+
+# Plot Rata-rata Penyewaan Sepeda Berdasarkan Musim
+st.subheader("Rata-Rata Penyewaan Sepeda Berdasarkan Musim")
+fig, ax = plt.subplots(figsize=(8, 6))
+ax.bar(rental_musim.index, rental_musim.values, color=['green', 'yellow', 'orange', 'blue'])
+ax.set_xlabel("Musim")
+ax.set_ylabel("Rata-rata Penyewaan Sepeda")
+ax.set_title("Rata-Rata Penyewaan Sepeda Berdasarkan Musim")
+st.pyplot(fig)
+
+# Plot Rata-rata Penyewaan Sepeda Berdasarkan Cuaca
+st.subheader("Rata-Rata Penyewaan Sepeda Berdasarkan Cuaca")
+fig, ax = plt.subplots(figsize=(8, 6))
+ax.bar(sepeda_cuaca.index, sepeda_cuaca.values, color=['green', 'yellow', 'orange', 'blue'])
+ax.set_xlabel("Cuaca")
+ax.set_ylabel("Rata-rata Penyewaan Sepeda")
+ax.set_title("Rata-Rata Penyewaan Sepeda Berdasarkan Cuaca")
+st.pyplot(fig)
+
+# Plot Rata-rata Penyewaan Sepeda per Jam
+st.subheader("Rata-Rata Penyewaan Sepeda per Jam dalam Sehari")
+fig, ax = plt.subplots(figsize=(12, 6))
+ax.plot(rata_jam.index, rata_jam.values, linestyle="-", color="royalblue", linewidth=2)
+ax.set_xticks(range(0, 24))
+ax.set_xlabel("Jam Dalam Hari")
+ax.set_ylabel("Rata-rata Penyewaan Sepeda")
+ax.set_title("Rata-Rata Penyewaan Sepeda per Jam dalam Sehari")
+ax.grid(True)
+st.pyplot(fig)
 
 st.subheader('Best Customer Based on RFM Parameters')
  
