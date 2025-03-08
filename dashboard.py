@@ -14,7 +14,7 @@ def create_rfm_df(df):
     })
     rfm.columns = ['registered', 'recency', 'frequency', 'monetary']
 
-    return rfm_df
+    return rfm
 
 dayc_df = pd.read_csv("day_clean.csv")
 hourc_df = pd.read_csv("hour_clean.csv")
