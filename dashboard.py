@@ -51,8 +51,6 @@ dayc_main_df = dayc_df[(dayc_df["dteday"] >= str(start_date)) &
 hourc_main_df = hourc_df[(hourc_df["dteday"] >= str(start_date)) & 
                         (hourc_df["dteday"] <= str(end_date))]
 
-rfm_df = create_rfm_df(hourc_main_df)
-
 dayc_df['year'] = dayc_df['dteday'].dt.year
 dayc_df['month'] = dayc_df['dteday'].dt.month
 
@@ -63,6 +61,8 @@ rental_musim = dayc_df.groupby("season")["cnt"].mean().sort_values()
 sepeda_cuaca = hourc_df.groupby("weathersit")["cnt"].mean().sort_values()
 
 rata_jam = hourc_df.groupby("hr")["cnt"].mean()
+
+rfm_df = create_rfm_df(hourc_main_df)
 
 st.title('Bike Sharing Dashboard')
 
@@ -78,6 +78,7 @@ ax.set_title("Tren Penyewaan Sepeda Bulanan (2011 vs 2012)")
 ax.legend(title="Tahun")
 ax.grid(True)
 st.pyplot(fig)
+st.subheader('Berdasarkan grafik, terlihat bahwa tren jumlah penyewaan tahun 2012 meningkat dibandingkan tahun 2011, dan juga bentuk garis pada grafik menunjukkan bahwa penyewaan sepeda ini memiliki pola tren yang konsisten sepanjang tahun.')
 
 # Plot Rata-rata Penyewaan Sepeda Berdasarkan Musim
 st.subheader("Rata-Rata Penyewaan Sepeda Berdasarkan Musim")
@@ -87,6 +88,7 @@ ax.set_xlabel("Musim")
 ax.set_ylabel("Rata-rata Penyewaan Sepeda")
 ax.set_title("Rata-Rata Penyewaan Sepeda Berdasarkan Musim")
 st.pyplot(fig)
+st.subheader('Berdasarkan grafik, menunjukkan bahwa musim gugur/fall memiliki jumlah penyewaan sepeda tertinggi, lalu musim semi/spring memiliki jumlah penyewaan sepeda terendah. Sedangkan musim dingin/winter dan musim panas/summer memiliki jumlah penyewaan sepeda yang kurang lebih mirip.')
 
 # Plot Rata-rata Penyewaan Sepeda Berdasarkan Cuaca
 st.subheader("Rata-Rata Penyewaan Sepeda Berdasarkan Cuaca")
@@ -96,6 +98,7 @@ ax.set_xlabel("Cuaca")
 ax.set_ylabel("Rata-rata Penyewaan Sepeda")
 ax.set_title("Rata-Rata Penyewaan Sepeda Berdasarkan Cuaca")
 st.pyplot(fig)
+st.subheader('Berdasarkan grafik, menunjukkan bahwa cuaca cerah/clear mendorong lebih banyak pelanggan untuk menyewa sepeda, kemudian hal ini berbanding lurus menurun dengan cuaca yang buruk. Jadi semakin baik cuaca hari itu, maka semakin banyak juga orang yang menyewa sepeda, begitu sebaliknya. Semakin buruk cuaca hari itu, maka semakin sedikit juga orang yang menyewa sepeda')
 
 # Plot Rata-rata Penyewaan Sepeda per Jam
 st.subheader("Rata-Rata Penyewaan Sepeda per Jam dalam Sehari")
@@ -107,6 +110,7 @@ ax.set_ylabel("Rata-rata Penyewaan Sepeda")
 ax.set_title("Rata-Rata Penyewaan Sepeda per Jam dalam Sehari")
 ax.grid(True)
 st.pyplot(fig)
+st.subheader('Pada grafik menunjukkan bahwa terjadi dua lonjakan penyewaan sepeda yang terlihat pada jam 8 pagi dan jam 5-6 sore. Kemudian mulai menurun pada jam 7 malam. Hingga pada jam 5 pagi mulai terjadi pembalikan arah menjadi meningkat.')
 
 st.subheader('Pelanggan Terbaik Berdasarkan RFM Analysis')
  
@@ -128,18 +132,21 @@ fig, ax = plt.subplots(nrows=1, ncols=3, figsize=(30, 6))
 
 colors = ["#72BCD4", "#72BCD4", "#72BCD4", "#72BCD4", "#72BCD4"]
 
+# Plot Rata-rata Recency
 sns.barplot(y="recency", x="registered", data=rfm_df.sort_values(by="recency", ascending=True).head(5), palette=colors, ax=ax[0])
 ax[0].set_ylabel(None)
 ax[0].set_xlabel(None)
 ax[0].set_title("By Recency", loc="center", fontsize=18)
 ax[0].tick_params(axis ='x', labelsize=15)
 
+# Plot Rata-rata Frequecy
 sns.barplot(y="frequency", x="registered", data=rfm_df.sort_values(by="frequency", ascending=False).head(5), palette=colors, ax=ax[1])
 ax[1].set_ylabel(None)
 ax[1].set_xlabel(None)
 ax[1].set_title("By Frequency", loc="center", fontsize=18)
 ax[1].tick_params(axis='x', labelsize=15)
 
+# Plot Rata-rata Monetary
 sns.barplot(y="monetary", x="registered", data=rfm_df.sort_values(by="monetary", ascending=False).head(5), palette=colors, ax=ax[2])
 ax[2].set_ylabel(None)
 ax[2].set_xlabel(None)
