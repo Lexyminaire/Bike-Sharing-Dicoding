@@ -34,3 +34,5 @@ pip install -r requirements.txt
 ```
 streamlit run dashboard.py
 ```
+
+![alt text]({9F7CDC83-DB6D-46C8-BD91-3F5C3A0DE42D}.png)
