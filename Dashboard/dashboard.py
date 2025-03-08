@@ -1,10 +1,12 @@
 import pandas as pd
+import matplotlib as plt
 import seaborn as sns
 import streamlit as st
 
 sns.set(style='dark')
 
 def create_rfm_df(df):
+    last_date = max(df['dteday'])
     rfm = df.groupby(by='registered', as_index=False).agg({
         'dteday': lambda x: (last_date - x.max()).days,
         'instant': 'count',
