@@ -16,8 +16,8 @@ def create_rfm_df(df):
 
     return rfm_df
 
-dayc_df = pd.read_csv("day_clean.csv")
-hourc_df = pd.read_csv("hour_clean.csv")
+dayc_df = pd.read_csv("Dashboard/day_clean.csv")
+hourc_df = pd.read_csv("Dashboard/hour_clean.csv")
 
 datetime_columns = ["dteday"]
 dayc_df.sort_values(by="dteday", inplace=True)
