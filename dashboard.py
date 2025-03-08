@@ -114,15 +114,15 @@ col1, col2, col3 = st.columns(3)
  
 with col1:
     avg_recency = round(rfm_df.recency.mean(), 1)
-    st.metric("Average Recency (days)", value=avg_recency)
+    st.metric("Rata-Rata Recency (days)", value=avg_recency)
  
 with col2:
     avg_frequency = round(rfm_df.frequency.mean(), 2)
-    st.metric("Average Frequency", value=avg_frequency)
+    st.metric("Rata-Rata Frequency", value=avg_frequency)
  
 with col3:
     avg_frequency = round(rfm_df.monetary.mean(), 3) 
-    st.metric("Average Monetary", value=avg_frequency)
+    st.metric("Rata-Rata Monetary", value=avg_frequency)
  
 fig, ax = plt.subplots(nrows=1, ncols=3, figsize=(30, 6))
 
@@ -131,7 +131,7 @@ colors = ["#72BCD4", "#72BCD4", "#72BCD4", "#72BCD4", "#72BCD4"]
 sns.barplot(y="recency", x="registered", data=rfm_df.sort_values(by="recency", ascending=True).head(5), palette=colors, ax=ax[0])
 ax[0].set_ylabel(None)
 ax[0].set_xlabel(None)
-ax[0].set_title("By Recency (days)", loc="center", fontsize=18)
+ax[0].set_title("By Recency", loc="center", fontsize=18)
 ax[0].tick_params(axis ='x', labelsize=15)
 
 sns.barplot(y="frequency", x="registered", data=rfm_df.sort_values(by="frequency", ascending=False).head(5), palette=colors, ax=ax[1])
@@ -146,6 +146,6 @@ ax[2].set_xlabel(None)
 ax[2].set_title("By Monetary", loc="center", fontsize=18)
 ax[2].tick_params(axis='x', labelsize=15)
 
-plt.suptitle("Best Customer Based on RFM Parameters (registered)", fontsize=20)
+plt.suptitle("Pelanggan Terbaik Berdasarkan RFM Analysis", fontsize=20)
 plt.show()
 st.pyplot(fig)
