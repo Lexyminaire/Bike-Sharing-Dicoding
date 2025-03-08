@@ -88,7 +88,7 @@ ax.set_xlabel("Musim")
 ax.set_ylabel("Rata-rata Penyewaan Sepeda")
 ax.set_title("Rata-Rata Penyewaan Sepeda Berdasarkan Musim")
 st.pyplot(fig)
-st.subheader('Berdasarkan grafik, menunjukkan bahwa musim gugur/fall memiliki jumlah penyewaan sepeda tertinggi, lalu musim semi/spring memiliki jumlah penyewaan sepeda terendah. Sedangkan musim dingin/winter dan musim panas/summer memiliki jumlah penyewaan sepeda yang kurang lebih mirip.')
+st.text('Berdasarkan grafik, menunjukkan bahwa musim gugur/fall memiliki jumlah penyewaan sepeda tertinggi, lalu musim semi/spring memiliki jumlah penyewaan sepeda terendah. Sedangkan musim dingin/winter dan musim panas/summer memiliki jumlah penyewaan sepeda yang kurang lebih mirip.')
 
 # Plot Rata-rata Penyewaan Sepeda Berdasarkan Cuaca
 st.subheader("Rata-Rata Penyewaan Sepeda Berdasarkan Cuaca")
