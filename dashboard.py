@@ -78,7 +78,7 @@ ax.set_title("Tren Penyewaan Sepeda Bulanan (2011 vs 2012)")
 ax.legend(title="Tahun")
 ax.grid(True)
 st.pyplot(fig)
-st.text('Berdasarkan grafik, terlihat bahwa tren jumlah penyewaan tahun 2012 meningkat dibandingkan tahun 2011, dan juga bentuk garis pada grafik menunjukkan bahwa penyewaan sepeda ini memiliki pola tren yang konsisten sepanjang tahun.')
+st.markdown('Berdasarkan grafik, terlihat bahwa tren jumlah penyewaan tahun 2012 meningkat dibandingkan tahun 2011, dan juga bentuk garis pada grafik menunjukkan bahwa penyewaan sepeda ini memiliki pola tren yang konsisten sepanjang tahun.')
 
 # Plot Rata-rata Penyewaan Sepeda Berdasarkan Musim
 st.subheader("Rata-Rata Penyewaan Sepeda Berdasarkan Musim")
@@ -88,7 +88,7 @@ ax.set_xlabel("Musim")
 ax.set_ylabel("Rata-rata Penyewaan Sepeda")
 ax.set_title("Rata-Rata Penyewaan Sepeda Berdasarkan Musim")
 st.pyplot(fig)
-st.text('Berdasarkan grafik, menunjukkan bahwa musim gugur/fall memiliki jumlah penyewaan sepeda tertinggi, lalu musim semi/spring memiliki jumlah penyewaan sepeda terendah. Sedangkan musim dingin/winter dan musim panas/summer memiliki jumlah penyewaan sepeda yang kurang lebih mirip.')
+st.markdown('Berdasarkan grafik, menunjukkan bahwa musim gugur/fall memiliki jumlah penyewaan sepeda tertinggi, lalu musim semi/spring memiliki jumlah penyewaan sepeda terendah. Sedangkan musim dingin/winter dan musim panas/summer memiliki jumlah penyewaan sepeda yang kurang lebih mirip.')
 
 # Plot Rata-rata Penyewaan Sepeda Berdasarkan Cuaca
 st.subheader("Rata-Rata Penyewaan Sepeda Berdasarkan Cuaca")
@@ -98,7 +98,7 @@ ax.set_xlabel("Cuaca")
 ax.set_ylabel("Rata-rata Penyewaan Sepeda")
 ax.set_title("Rata-Rata Penyewaan Sepeda Berdasarkan Cuaca")
 st.pyplot(fig)
-st.text('Berdasarkan grafik, menunjukkan bahwa cuaca cerah/clear mendorong lebih banyak pelanggan untuk menyewa sepeda, kemudian hal ini berbanding lurus menurun dengan cuaca yang buruk. Jadi semakin baik cuaca hari itu, maka semakin banyak juga orang yang menyewa sepeda, begitu sebaliknya. Semakin buruk cuaca hari itu, maka semakin sedikit juga orang yang menyewa sepeda')
+st.markdown('Berdasarkan grafik, menunjukkan bahwa cuaca cerah/clear mendorong lebih banyak pelanggan untuk menyewa sepeda, kemudian hal ini berbanding lurus menurun dengan cuaca yang buruk. Jadi semakin baik cuaca hari itu, maka semakin banyak juga orang yang menyewa sepeda, begitu sebaliknya. Semakin buruk cuaca hari itu, maka semakin sedikit juga orang yang menyewa sepeda')
 
 # Plot Rata-rata Penyewaan Sepeda per Jam
 st.subheader("Rata-Rata Penyewaan Sepeda per Jam dalam Sehari")
@@ -110,7 +110,7 @@ ax.set_ylabel("Rata-rata Penyewaan Sepeda")
 ax.set_title("Rata-Rata Penyewaan Sepeda per Jam dalam Sehari")
 ax.grid(True)
 st.pyplot(fig)
-st.text('Pada grafik menunjukkan bahwa terjadi dua lonjakan penyewaan sepeda yang terlihat pada jam 8 pagi dan jam 5-6 sore. Kemudian mulai menurun pada jam 7 malam. Hingga pada jam 5 pagi mulai terjadi pembalikan arah menjadi meningkat.')
+st.markdown('Pada grafik menunjukkan bahwa terjadi dua lonjakan penyewaan sepeda yang terlihat pada jam 8 pagi dan jam 5-6 sore. Kemudian mulai menurun pada jam 7 malam. Hingga pada jam 5 pagi mulai terjadi pembalikan arah menjadi meningkat.')
 
 st.subheader('Pelanggan Terbaik Berdasarkan RFM Analysis')
  
