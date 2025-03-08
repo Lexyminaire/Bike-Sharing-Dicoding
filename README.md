@@ -1,8 +1,8 @@
-# Submission Dicoding " Belajar Analisis Data dengan Python " ✨
+# Submission Dicoding "Belajar Analisis Data dengan Python"
 
 Proyek ini bertujuan untuk menganalisis data Bike Sharing. Hal ini digunakan untuk memahami faktor-faktor yang dapat mempengaruhi penyewaan sepeda, seperti waktu, cuaca, dll.
 
-## 📂 Dataset
+## Dataset
 
 Dataset yang digunakan tersimpan dalam folder data yang berisi:
 
@@ -34,5 +34,7 @@ pip install -r requirements.txt
 ```
 streamlit run dashboard.py
 ```
+
+### Preview
 
 ![alt text]({9F7CDC83-DB6D-46C8-BD91-3F5C3A0DE42D}.png)
