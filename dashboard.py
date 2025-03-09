@@ -71,7 +71,7 @@ st.markdown('Berdasarkan grafik, terlihat bahwa tren jumlah penyewaan tahun 2012
 # Plot Rata-rata Penyewaan Sepeda Berdasarkan Musim
 st.subheader("Rata-Rata Penyewaan Sepeda Berdasarkan Musim")
 fig, ax = plt.subplots(figsize=(8, 6))
-ax.bar(color=['green', 'yellow', 'orange', 'blue'])
+ax.bar(rental_musim.index, rental_musim.values, color=['green', 'yellow', 'orange', 'blue'])
 ax.set_xlabel("Musim")
 ax.set_ylabel("Rata-rata Penyewaan Sepeda")
 ax.set_title("Rata-Rata Penyewaan Sepeda Berdasarkan Musim")
