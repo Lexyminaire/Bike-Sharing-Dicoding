@@ -5,17 +5,6 @@ import streamlit as st
 
 sns.set(style='dark')
 
-def create_rfm_df(df):
-    last_date = max(df['dteday'])
-    rfm = df.groupby(by='registered', as_index=False).agg({
-        'dteday': lambda x: (last_date - x.max()).days,
-        'instant': 'count',
-        'cnt': 'sum'
-    })
-    rfm.columns = ['registered', 'recency', 'frequency', 'monetary']
-
-    return rfm
-
 dayc_df = pd.read_csv("day_clean.csv")
 hourc_df = pd.read_csv("hour_clean.csv")
 
@@ -54,15 +43,13 @@ hourc_main_df = hourc_df[(hourc_df["dteday"] >= str(start_date)) &
 dayc_df['year'] = dayc_df['dteday'].dt.year
 dayc_df['month'] = dayc_df['dteday'].dt.month
 
-rental_bulan = dayc_df.groupby(['year', 'month'])['cnt'].sum().unstack(0)
+rental_bulan = dayc_main_df.groupby(['year', 'month'])['cnt'].sum().unstack(0)
 
-rental_musim = dayc_df.groupby("season")["cnt"].mean().sort_values()
+rental_musim = dayc_main_df.groupby("season")["cnt"].mean().sort_values()
 
-sepeda_cuaca = hourc_df.groupby("weathersit")["cnt"].mean().sort_values()
+sepeda_cuaca = hourc_main_df.groupby("weathersit")["cnt"].mean().sort_values()
 
-rata_jam = hourc_df.groupby("hr")["cnt"].mean()
-
-rfm_df = create_rfm_df(hourc_main_df)
+rata_jam = hourc_main_df.groupby("hr")["cnt"].mean()
 
 st.title('Bike Sharing Dashboard')
 
