@@ -25,6 +25,7 @@ dayc_max_date = dayc_df["dteday"].max()
 hourc_min_date = hourc_df["dteday"].min()
 hourc_max_date = hourc_df["dteday"].max()
 
+
 with st.sidebar:
     st.image("https://storage.googleapis.com/kaggle-datasets-images/130897/312329/20c79bcd928e6d481fca7d5dc9fa3ca4/dataset-cover.jpg?t=2019-05-24-07-06-55")
     
@@ -33,25 +34,25 @@ with st.sidebar:
         min_value=dayc_min_date,
         max_value=dayc_max_date,
         value=[dayc_min_date, dayc_max_date])
-  
+
+start_date = pd.to_datetime(start_date)
+end_date = pd.to_datetime(end_date)
+
 dayc_main_df = dayc_df[(dayc_df["dteday"] >= str(start_date)) & 
                        (dayc_df["dteday"] <= str(end_date))]
 
 hourc_main_df = hourc_df[(hourc_df["dteday"] >= str(start_date)) & 
                         (hourc_df["dteday"] <= str(end_date))]
 
-dayc_df['year'] = dayc_df['dteday'].dt.year
-dayc_df['month'] = dayc_df['dteday'].dt.month
+st.title('Bike Sharing Dashboard')
+
+dayc_main_df['year'] = dayc_main_df['dteday'].dt.year
+dayc_main_df['month'] = dayc_main_df['dteday'].dt.month
 
 rental_bulan = dayc_main_df.groupby(['year', 'month'])['cnt'].sum().unstack(0)
-
 rental_musim = dayc_main_df.groupby("season")["cnt"].mean().sort_values()
-
 sepeda_cuaca = hourc_main_df.groupby("weathersit")["cnt"].mean().sort_values()
-
 rata_jam = hourc_main_df.groupby("hr")["cnt"].mean()
-
-st.title('Bike Sharing Dashboard')
 
 #Plot Tren Penyewaan Sepeda Bulanan
 st.subheader('Tren Penyewaan Sepeda Bulanan (2011 vs 2012)')
@@ -70,7 +71,7 @@ st.markdown('Berdasarkan grafik, terlihat bahwa tren jumlah penyewaan tahun 2012
 # Plot Rata-rata Penyewaan Sepeda Berdasarkan Musim
 st.subheader("Rata-Rata Penyewaan Sepeda Berdasarkan Musim")
 fig, ax = plt.subplots(figsize=(8, 6))
-ax.bar(rental_musim.index, rental_musim.values, color=['green', 'yellow', 'orange', 'blue'])
+ax.bar(color=['green', 'yellow', 'orange', 'blue'])
 ax.set_xlabel("Musim")
 ax.set_ylabel("Rata-rata Penyewaan Sepeda")
 ax.set_title("Rata-Rata Penyewaan Sepeda Berdasarkan Musim")
